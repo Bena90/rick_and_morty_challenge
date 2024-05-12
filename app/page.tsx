@@ -1,6 +1,6 @@
 
-import CharacterCard from '@/components/characterCard';
-import CharacterContainer from '@/components/characterContainer';
+import CharacterCard from '@/components/character_card';
+import CharacterContainer from '@/components/character_container';
 import localFont from 'next/font/local';
 
 const myFont = localFont({ src: '../core/fonts/rick.ttf' })
