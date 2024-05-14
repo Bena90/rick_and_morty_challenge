@@ -1,6 +1,8 @@
 'use client'
+import { useAppDispatch, useAppSelector } from '@/store';
+import { toggleSelected } from '@/store/character/episodesSlice';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaCircle, FaMinus, FaPlus } from "react-icons/fa";
 import { PiAlien, PiFinnTheHuman, PiRobot } from "react-icons/pi";
 
@@ -14,6 +16,7 @@ interface Props {
   image: string;
   episode: string[];
   url: string;
+  listNumber: number;
 }
 
 const COLOR: { [key: string]: string } = {
@@ -36,15 +39,31 @@ export function CharacterCard ({
   name,
   status,
   species,
-  type,
-  gender,
   image,
   episode,
-  url,
+  listNumber,
 }: Props){
   const [ isActive, setIsActive ] = useState<boolean>(false);
 
-  const handleActive = () => setIsActive((prev) => !prev);
+  const selectedCharacters = useAppSelector( state => state.episodes[listNumber] )
+  const dispatch = useAppDispatch()
+
+  const onToggle = () => {
+    dispatch( toggleSelected({ 
+      id,
+      name,
+      episode,
+      list: listNumber,
+    }))
+  }
+
+  useEffect(() => {
+    if( selectedCharacters?.id === id ) {
+      setIsActive(true);
+      return
+    }
+    setIsActive(false);
+  }, [id, selectedCharacters])
 
   return (
     <div className='relative h-full'>
@@ -65,7 +84,7 @@ export function CharacterCard ({
         <div className='relative'>
           <div className='relative z-10 flex items-center justify-center h-[50px] w-[50px] rounded-full bg-slate-950'>
             <div 
-              onClick={handleActive}
+              onClick={onToggle}
               className={`flex items-center justify-center bg-green h-[70%] w-[70%] rounded-full cursor-pointer hover:opacity-50 border-lime-300 border ${isActive && 'bg-pink border-pink'}`}>
               {isActive
                 ? <FaMinus fill=''/>
@@ -76,11 +95,14 @@ export function CharacterCard ({
         </div>
       </div>
       <div className={`bg-slate-900 rounded-tr-3xl rounded-b-3xl border-l border-b border-r h-[160px] p-3 pt-16 ${isActive ? 'border-pink' : 'border-slate-800'}`}>
-        <p className='text-xl font-black truncate'>
+        <p className={`text-xl font-black truncate ${isActive ? 'text-pink' : ''}`}>
           {name}
         </p>
         <div className='flex items-center gap-2 font-thin'>
-        <span className=''>Specie:</span>{species} {getSpecieIcon(species.toLowerCase())}
+        <span className='font-normal'>
+          Specie:
+        </span>
+        {species} {getSpecieIcon(species.toLowerCase())}
         </div>
         <div className='flex items-center gap-2 font-thin'>
           <span className='font-normal'>

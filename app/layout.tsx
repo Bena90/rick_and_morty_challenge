@@ -1,3 +1,4 @@
+import { Providers } from "@/store/Providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} p-8 scrollbar`}>{children}</body>
+      <body className={`${inter.className} p-8 scrollbar`}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }
