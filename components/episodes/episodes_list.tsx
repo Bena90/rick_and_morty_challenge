@@ -28,7 +28,7 @@ export function EpisodesList({
       </span>
       </div>
       {episodes
-        ? episodes?.map((episode) => <EpisodeItem key={episode} url={episode} />)
+        ? episodes?.map((url) => <EpisodeItem key={url} episode={url} />)
         : <EpisodeEmpty text="Please, select one character" />
       }
     </ListLayout>

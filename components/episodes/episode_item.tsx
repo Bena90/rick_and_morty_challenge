@@ -1,54 +1,43 @@
 'use client'
+
+import { Episode } from "@/core/entities/episode";
 import { useEffect, useState } from "react";
+import { EpisodeModel } from '../../core/models/episode_model';
 
-export interface Episode {
-  id:         number;
-  name:       string;
-  air_date:   string;
-  episode:    string;
-  characters: string[];
-  url:        string;
-  created:    Date;
-}
-
-export function EpisodeItem({url}: {url: string}) {
-  const [ episode, setEpisode ] = useState<Episode>()
-  const [ isLoading, setIsLoading ] = useState<boolean>(false);
+export function EpisodeItem({episode}: {episode: string}) {
+  const [ episodeInfo, setEpisodeInfo] = useState<Episode>()
 
   useEffect(() => {
-    setIsLoading(true);
-
     const getEpisode = async(episode: string) => {
       if(!episode) return;
-      const data: Episode = await fetch(episode).then( res => res.json())
-      if (data) setEpisode(data);
+
+      await fetch(episode)
+        .then( res => res.json())
+        .then((data) => {
+          if (data) setEpisodeInfo(EpisodeModel.fromJson(data))
+        })
+        .catch((error) => console.log(error))
     }
 
-    try {
-      getEpisode(url);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false)
-    }
-  }, [url])
+    getEpisode(episode);
+  }, [episode])
 
-  if(!episode) return
+  if(!episodeInfo) return
 
   return (
     <div className="flex flex-col bg-slate-900 rounded-xl p-2 border border-slate-800 hover:bg-slate-800  hover:border-slate-700 ">
       <div>
-        <span className="font-bold tracking-wider text-green truncate">{episode.name}</span>
+        <span className="font-bold tracking-wider text-green truncate">{episodeInfo.name}</span>
       </div>
 
       <div className="flex gap-4">
         <div className="flex gap-2">
           <span className="">Ep.:</span>
-          <span className="font-thin"> {episode.episode}</span>
+          <span className="font-thin"> {episodeInfo.episode}</span>
         </div>
         <div>
           <span className="">Date:</span>
-          <span className="font-thin"> {episode.air_date}</span> 
+          <span className="font-thin"> {episodeInfo.airDate}</span> 
         </div>
       </div>
     </div>

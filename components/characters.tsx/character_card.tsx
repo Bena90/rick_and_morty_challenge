@@ -96,10 +96,10 @@ export function CharacterCard ({
           {name}
         </p>
         <div className='flex items-center gap-2 font-thin'>
-        <span className='font-normal'>
-          Specie:
-        </span>
-        {species} {getSpecieIcon(species.toLowerCase())}
+          <span className='font-normal'>
+            Specie:
+          </span>
+          {species} {getSpecieIcon(species.toLowerCase())}
         </div>
         <div className='flex items-center gap-2 font-thin'>
           <span className='font-normal'>
