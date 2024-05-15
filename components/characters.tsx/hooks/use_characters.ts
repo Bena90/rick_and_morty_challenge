@@ -1,7 +1,7 @@
-import { Character } from '@/domain/entities/character'
-import { Pagination } from '@/domain/entities/pagination'
-import { CharacterModel } from '@/domain/models/character_model'
-import { PaginationModel } from '@/domain/models/pagination_model'
+import { Character } from '@/core/entities/character'
+import { Pagination } from '@/core/entities/pagination'
+import { CharacterModel } from '@/core/models/character_model'
+import { PaginationModel } from '@/core/models/pagination_model'
 import { useEffect, useState } from 'react'
 
 export const useCharacters = () => {
@@ -15,7 +15,7 @@ export const useCharacters = () => {
     setIsLoading(true)
     await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
       .then( res => res.json()
-      .then((data) =>{
+      .then((data) => {
         if(data.error) throw new Error(data.error)
         
         setCharacters(data.results?.map((item: Character) => CharacterModel.fromJson(item as unknown as{ [key: string]: never; })) );

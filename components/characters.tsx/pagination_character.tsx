@@ -20,7 +20,6 @@ const PaginationItem = ({
   children: ReactNode;
 }) => {
   return(
-    <li >
       <div
         className={`mx-2 flex h-9 w-9 items-center justify-center rounded-full p-0 text-md text-slate-800 transition duration-150 ease-in-out hover:bg-pink ${isActive ? 'bg-pink border-pink' : 'bg-green'} cursor-pointer`}
         onClick={onClick}
@@ -28,12 +27,10 @@ const PaginationItem = ({
       >
         {children}
       </div>
-    </li>
   )
 }
 
 export function PaginationCharacter({
-  count,
   pages,
   next,
   prev,
@@ -53,7 +50,7 @@ export function PaginationCharacter({
 
   return (
       <nav className="flex justify-center pt-4">
-        <ul className="flex h-full justify-end items-end">
+        <div className="flex h-full justify-end items-end">
           {currentPage !== '1' && prev &&
           <PaginationItem onClick={() => onClick({page: getPage(prev)})}>
               <GrPrevious />
@@ -81,7 +78,7 @@ export function PaginationCharacter({
           <PaginationItem onClick={() => onClick({page: getPage(next)})}>
             <GrNext />
           </PaginationItem>}
-        </ul>
+        </div>
       </nav>
   );
 }
