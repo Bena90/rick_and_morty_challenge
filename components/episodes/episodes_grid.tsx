@@ -13,7 +13,7 @@ export function EpisodesGrid() {
     <section className="flex flex-col w-full gap-4">
       <h3 className={`${myFont.className} text-4xl text-green`}>Episodes</h3>
       <h4 className='text-xl text-slate-200 font-thin tracking-wider'><span className='text-pink font-normal'>2 - </span>Now, you can compare which episodes the selected characters share.</h4>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <EpisodesList episodes={episodesA} characterName={characterA} />
         <CompareList episodes={episodesCompare} />
         <EpisodesList episodes={episodesB} characterName={characterB} />
