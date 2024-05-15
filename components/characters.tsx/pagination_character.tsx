@@ -21,7 +21,7 @@ const PaginationItem = ({
 }) => {
   return(
       <div
-        className={`mx-2 flex h-9 w-9 items-center justify-center rounded-full p-0 text-md text-slate-400 border transition duration-150 ease-in-out hover:bg-green ${isActive ? 'bg-pink border-pink text-slate-700' : 'bg-slate-900 border-slate-800'} cursor-pointer`}
+        className={`mx-2 flex h-9 w-9 items-center justify-center rounded-full p-0 text-md text-slate-400 border transition duration-150 ease-in-out hover:text-slate-800 hover:bg-green hover:border-green ${isActive ? 'bg-pink border-pink text-slate-700' : 'bg-slate-900 border-slate-800'} cursor-pointer`}
         onClick={onClick}
         aria-label="Previous"
       >
