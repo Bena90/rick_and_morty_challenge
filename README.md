@@ -7,16 +7,16 @@ This project was carried out as a Challenge during the selection process for the
  - [Tailwind CSS](https://tailwindcss.com/)
  - [Rick and Morty API](https://rickandmortyapi.com/)
  - [Docker](https://www.docker.com/)
- - [Zod](https://zod.dev/)
+ - [Jest](https://jestjs.io/)
 
 ## What will I find?
+In this challenge I tried to touch as many issues as I could and prioritize performance and server-side rendering. My original idea was to use clean architecture but then I saw it oversized for the size of this project so I limited myself to just modeling classes to model the API responses.
+
 - Server side rendering
 - Client side rendering
 - SOLID principles
 - HOC components pattern
 - Compound components pattern
-- Clean architecture (data, domain, presentation)
-- Zod Validations
 
 ## Installation with npm
 
