@@ -4,22 +4,32 @@ import { Episode } from "@/core/entities/episode";
 import { useEffect, useState } from "react";
 import { EpisodeModel } from '../../core/models/episode_model';
 
+export const getEpisode = async(episode: string) => {
+  if(!episode) return;
+
+  try {
+    const response = await fetch(episode)
+    if(!response.ok) {
+      throw new Error('Something went wrong!');
+    }
+
+    const infoEpisode = EpisodeModel.fromJson(await response.json())
+
+    return infoEpisode
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 export function EpisodeItem({episode}: {episode: string}) {
   const [ episodeInfo, setEpisodeInfo] = useState<Episode>()
 
   useEffect(() => {
-    const getEpisode = async(episode: string) => {
-      if(!episode) return;
+    getEpisode(episode)
+      .then(response => setEpisodeInfo(response))
+      .catch(error => console.log(error));
 
-      await fetch(episode)
-        .then( res => res.json())
-        .then((data) => {
-          if (data) setEpisodeInfo(EpisodeModel.fromJson(data))
-        })
-        .catch((error) => console.log(error))
-    }
-
-    getEpisode(episode);
   }, [episode])
 
   if(!episodeInfo) return
