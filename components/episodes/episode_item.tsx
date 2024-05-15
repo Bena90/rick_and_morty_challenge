@@ -26,16 +26,16 @@ export function EpisodeItem({episode}: {episode: string}) {
 
   return (
     <div className="flex flex-col bg-slate-900 rounded-xl p-2 border border-slate-800 hover:bg-slate-800  hover:border-slate-700 ">
-      <div>
-        <span className="font-bold tracking-wider text-green truncate">{episodeInfo.name}</span>
+      <div className="truncate">
+        <span className="font-bold tracking-wider text-green">{episodeInfo.name}</span>
       </div>
 
-      <div className="flex gap-4">
-        <div className="flex gap-2">
+      <div className="flex gap-4 flex-col lg:flex-row">
+        <div className="flex gap-2 flex-col md:flex-row">
           <span className="">Ep.:</span>
           <span className="font-thin"> {episodeInfo.episode}</span>
         </div>
-        <div>
+        <div className="flex-col md:flex-row">
           <span className="">Date:</span>
           <span className="font-thin"> {episodeInfo.airDate}</span> 
         </div>

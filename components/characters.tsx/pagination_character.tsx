@@ -21,7 +21,7 @@ const PaginationItem = ({
 }) => {
   return(
       <div
-        className={`mx-2 flex h-9 w-9 items-center justify-center rounded-full p-0 text-md text-slate-800 transition duration-150 ease-in-out hover:bg-pink ${isActive ? 'bg-pink border-pink' : 'bg-green'} cursor-pointer`}
+        className={`mx-2 flex h-9 w-9 items-center justify-center rounded-full p-0 text-md text-slate-400 border transition duration-150 ease-in-out hover:bg-green ${isActive ? 'bg-pink border-pink text-slate-700' : 'bg-slate-900 border-slate-800'} cursor-pointer`}
         onClick={onClick}
         aria-label="Previous"
       >
@@ -49,14 +49,14 @@ export function PaginationCharacter({
   }
 
   return (
-      <nav className="flex justify-center pt-4">
+      <nav className="flex justify-center pt-5 pb-2">
         <div className="flex h-full justify-end items-end">
           {currentPage !== '1' && prev &&
           <PaginationItem onClick={() => onClick({page: getPage(prev)})}>
               <GrPrevious />
           </PaginationItem>}
           {prev &&
-          <PaginationItem>
+          <PaginationItem onClick={() => onClick({page: getPage(prev)})}>
             {getPage(prev)}
           </PaginationItem>}
           <PaginationItem isActive>
