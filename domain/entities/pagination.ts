@@ -15,5 +15,4 @@ export abstract class Pagination {
     this.next =  next;
     this.prev =  prev;
   }
-
 }

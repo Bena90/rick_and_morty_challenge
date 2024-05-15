@@ -8,22 +8,11 @@ import { EpisodesList } from './episodes_list';
 
 const myFont = localFont({ src: '../../core/fonts/rick.ttf' })
 
-const postEpisodes = async({episodes}: {episodes: CharacterEpisodesState}):Promise<any> => {
-  const data = await fetch('/api/episodes',{
-    method: 'POST',
-    body: JSON.stringify(episodes),
-  }).then((res) => res.json())
-
-  return data
-}
-
 export function EpisodesGrid() {
   const characterSelected = useAppSelector(state => state.episodes)
   const [compare, setCompare] = useState<string[]>()
-  const [isLoading, setIsLoading] = useState<boolean>()
   
   useEffect(() => {
-    setIsLoading(true);
     if( !characterSelected[1] || !characterSelected[2] ) {
       setCompare([]);
       return;
@@ -38,16 +27,12 @@ export function EpisodesGrid() {
       setCompare(data.episodes);
     }
     postEpisodes({episodes: characterSelected});
-    setIsLoading(false);
   },[characterSelected])
-
-  useEffect(() => {
-    console.log(compare)
-  },[ compare ])
 
   return (
     <section className="flex flex-col w-full gap-4">
       <h3 className={`${myFont.className} text-4xl text-green`}>Episodes</h3>
+      <h4 className='text-xl text-slate-200 font-thin tracking-wider'><span className='text-pink font-normal'>2 - </span>Now, you can compare which episodes the selected characters share.</h4>
       <div className="grid grid-cols-3">
         <EpisodesList episodes={characterSelected[1]?.episode} characterName={characterSelected[1]?.name} />
         <CompareList episodes={compare} />

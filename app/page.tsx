@@ -22,7 +22,7 @@ export default async function Home() {
         </h1>
         <h2 className='text-xl text-slate-200 font-normal tracking-wider'>On this website you can select two Rick and Morty characters and compare in which episodes they appear together.</h2>
       </div>
-      <h3 className='text-xl text-slate-200 font-thin tracking-wider'><span className='text-pink font-normal'>1 - </span>First, select two character.</h3>
+      <h4 className='text-xl text-slate-200 font-thin tracking-wider'><span className='text-pink font-normal'>1 - </span>First, select two character.</h4>
       <CharactersGrid />
       <EpisodesGrid />
     </main>
