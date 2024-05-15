@@ -1,26 +1,7 @@
+import { getCharacters } from '@/app/services/getCharacters'
 import { Character } from '@/core/entities/character'
 import { Pagination } from '@/core/entities/pagination'
-import { CharacterModel } from '@/core/models/character_model'
-import { PaginationModel } from '@/core/models/pagination_model'
 import { useEffect, useState } from 'react'
-
-export const getCharacters = async({page = '1'}: {page?: string}) => {
-  try {
-    const response: Response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
-
-    if(!response.ok){
-      throw new Error('Something went wrong!')
-    }
-
-    const data = await response.json();
-    const pagination = PaginationModel.fromJson(data.info as unknown as{ [key: string]: never; })
-    const characters = data.results?.map((item: Character) => CharacterModel.fromJson(item as unknown as{ [key: string]: never; }))
-
-    return { pagination, characters };
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export const useCharacters = () => {
   const [ pagination, setPagination] = useState<Pagination>()

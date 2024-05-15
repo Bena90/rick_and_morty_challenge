@@ -1,4 +1,5 @@
-import { EpisodeItem, getEpisode } from '@/components/episodes/episode_item';
+import { getEpisode } from '@/app/services/getEpisodes';
+import { EpisodeItem } from '@/components/episodes/episode_item';
 import { EpisodeModel } from '@/core/models/episode_model';
 import { render } from '@testing-library/react';
 

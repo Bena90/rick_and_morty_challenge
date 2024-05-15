@@ -1,4 +1,4 @@
-import { getCharacters } from "@/components/characters.tsx/hooks/use_characters";
+import { getCharacters } from "@/app/services/getCharacters";
 import { CharacterModel } from "@/core/models/character_model";
 import { PaginationModel } from "@/core/models/pagination_model";
 
