@@ -13,7 +13,7 @@ export default async function Home() {
             src={title}
             alt="Character image"
             width={300}
-            height={400}
+            height={103}
             priority={false}
           />
         </div>
