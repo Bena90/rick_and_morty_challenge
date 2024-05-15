@@ -2,16 +2,6 @@ import { EpisodeEmpty } from "./episode_empty";
 import { EpisodeItem } from "./episode_item";
 import { ListLayout } from "./list_layout";
 
-export interface Episode {
-  id:         number;
-  name:       string;
-  air_date:   string;
-  episode:    string;
-  characters: string[];
-  url:        string;
-  created:    Date;
-}
-
 export function EpisodesList({
   episodes, characterName
 }: {
