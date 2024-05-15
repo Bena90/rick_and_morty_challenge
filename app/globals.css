@@ -8,6 +8,28 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #0F172A;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 100vh;
+    border: 1px solid #334155;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 226, 232, 240;
