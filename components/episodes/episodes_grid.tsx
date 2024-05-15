@@ -7,7 +7,7 @@ import { useEpisodes } from './use_episodes/use_episodes';
 const myFont = localFont({ src: '../../core/fonts/rick.ttf' })
 
 export function EpisodesGrid() {
-  const { episodesA, episodesB, episodesCompare, characterA, characterB } = useEpisodes();
+  const { episodesA, episodesB, episodesCompare, characterA, characterB, isLoadingCompare } = useEpisodes();
 
   return (
     <section className="flex flex-col w-full gap-4">
@@ -15,7 +15,7 @@ export function EpisodesGrid() {
       <h4 className='text-xl text-slate-200 font-thin tracking-wider'><span className='text-pink font-normal'>2 - </span>Now, you can compare which episodes the selected characters share.</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <EpisodesList episodes={episodesA} characterName={characterA} />
-        <CompareList episodes={episodesCompare} />
+        <CompareList episodes={episodesCompare} isLoading={isLoadingCompare} />
         <EpisodesList episodes={episodesB} characterName={characterB} />
       </div>
     </section>
